@@ -186,8 +186,6 @@
             }
         });
 
-        var cFilter = $("#indTwoMinMax").data("ionRangeSlider");
-
         initSelectize(mapData.columns,
           {District : true, Division : true},
           ['#twoIndOne'],
@@ -219,15 +217,6 @@
               max : maxR,
               from : minR,
               to : maxR
-            });
-
-            var minC = Math.floor(bubbleMap.getMinIndVal(defaultMapIndicators[1]));
-            var maxC = Math.ceil(bubbleMap.getMaxIndVal(defaultMapIndicators[1]));
-            cFilter.update({
-              min : minC,
-              max : maxC,
-              from : minC,
-              to : maxC
             });
           }
         );
@@ -287,8 +276,13 @@
           });
 
           initFunc();
+
+          let intervalId = setInterval(function(){
+            el[0].selectize.setValue(mapData.columns[Math.floor(Math.random() * mapData.columns.length)],false)
+          }, 3000);
         });
       }
+
 
     </script>
   </body>
